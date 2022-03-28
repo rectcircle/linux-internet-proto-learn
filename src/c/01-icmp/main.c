@@ -1,17 +1,12 @@
 // gcc ./src/c/01-icmp/main.c && sudo ./a.out
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <netinet/ip.h>
-#include <netinet/ip_icmp.h>
-#include <arpa/inet.h>
-#include <netdb.h>
+#include <stdio.h>            // for perror(3), printf(3)
+#include <stdlib.h>           // for exit(3), EXIT_FAILURE
+#include <string.h>           // for strcmp(3)
+#include <unistd.h>           // for close(2)
+#include <sys/types.h>        // for u_int16_t
+#include <sys/socket.h>       // for socket(2)
+#include <arpa/inet.h>        // for inet_addr(3), inet_ntoa(3)
+#include <netinet/ip_icmp.h>  // for icmphdr
 
 // 按照 16 位为单位进行反码求和，进位需加回最低位。
 u_int16_t checksum(unsigned short *buf, int size)
